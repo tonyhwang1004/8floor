@@ -70,7 +70,6 @@
             }
         }
 
-        /* ========== 공통 카드 스타일 ========== */
         .card {
             background: white;
             border-radius: 24px;
@@ -107,7 +106,6 @@
             font-weight: 500;
         }
 
-        /* ========== 슬라이드 1: D-Day ========== */
         .dday-number {
             font-size: 18rem;
             font-weight: 900;
@@ -135,7 +133,6 @@
             margin-top: 30px;
         }
 
-        /* ========== 슬라이드 2: 현재시각 ========== */
         .clock-display {
             font-size: 14rem;
             font-weight: 900;
@@ -156,7 +153,6 @@
             margin-top: 40px;
         }
 
-        /* ========== 슬라이드 3,4,5: 메시지 카드 ========== */
         .message-icon {
             font-size: 5rem;
             margin-bottom: 30px;
@@ -197,7 +193,6 @@
             justify-content: center;
         }
 
-        /* ========== 슬라이드 인디케이터 ========== */
         .slide-indicator {
             position: absolute;
             bottom: 40px;
@@ -210,7 +205,6 @@
             border: 1px solid var(--border-gray);
         }
 
-        /* ========== 프로그레스 바 ========== */
         .progress-bar {
             position: absolute;
             bottom: 0;
@@ -225,7 +219,6 @@
             to { width: 100%; }
         }
 
-        /* ========== 반응형 ========== */
         @media (max-width: 1200px) {
             .dday-number { font-size: 14rem; }
             .clock-display { font-size: 10rem; }
@@ -260,8 +253,7 @@
 
     <!-- 슬라이드 화면 -->
     <div class="slide-container" id="slide-container">
-        
-        <!-- 슬라이드 1: D-Day 카운트다운 -->
+
         <div class="slide slide-1 active">
             <div class="card card-large">
                 <div class="tag">2027학년도 대학수학능력시험</div>
@@ -272,7 +264,6 @@
             <div class="progress-bar"></div>
         </div>
 
-        <!-- 슬라이드 2: 현재 시각 -->
         <div class="slide slide-2">
             <div class="card card-large">
                 <div class="tag">현재 시각</div>
@@ -283,7 +274,6 @@
             <div class="progress-bar"></div>
         </div>
 
-        <!-- 슬라이드 3: 오늘의 공부 팁 -->
         <div class="slide slide-3">
             <div class="card">
                 <div class="tag" id="study-tag">오늘의 공부 전략</div>
@@ -297,7 +287,6 @@
             <div class="progress-bar"></div>
         </div>
 
-        <!-- 슬라이드 4: 건강 관리 -->
         <div class="slide slide-4">
             <div class="card">
                 <div class="tag" id="health-tag">컨디션 관리</div>
@@ -311,7 +300,6 @@
             <div class="progress-bar"></div>
         </div>
 
-        <!-- 슬라이드 5: 응원 메시지 -->
         <div class="slide slide-5">
             <div class="card">
                 <div class="tag" id="cheer-tag">오늘의 응원</div>
@@ -327,16 +315,13 @@
     </div>
 
     <script>
-        // 전역 변수들
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
 
-        // 수능 날짜 설정 (2026년 11월 19일 - 2027학년도)
         const examDate = new Date('2026-11-19');
         examDate.setHours(0, 0, 0, 0);
 
-        // 수정된 시간표 (4교시와 9교시는 60분 공부, 나머지는 50분 공부 + 10분 휴식)
         const schedule = [
             { name: "1교시", start: "08:00", duration: 50, type: "class" },
             { name: "쉬는시간", start: "08:50", duration: 10, type: "break" },
@@ -368,158 +353,44 @@
             { name: "쉬는시간", start: "23:50", duration: 10, type: "break" }
         ];
 
-        // 요일별 메시지 - 깔끔하고 힘이 되는 문구
         const weeklyMessages = {
-            // 월요일
             1: {
-                study: {
-                    tag: "월요일 공부 전략",
-                    main: "새로운 한 주의 시작,<br>오늘의 계획을 세워보세요",
-                    tip1: "📋 이번 주 목표 설정하기",
-                    tip2: "📖 취약 과목 집중 공략"
-                },
-                health: {
-                    tag: "월요일 컨디션 관리",
-                    main: "주말 리듬을 빠르게<br>공부 모드로 전환하세요",
-                    tip1: "☀️ 아침 일찍 일어나기",
-                    tip2: "💧 물 자주 마시기"
-                },
-                cheer: {
-                    tag: "월요일 응원",
-                    main: "시작이 반입니다<br>오늘 하루만 집중해보세요",
-                    tip1: "🎯 작은 목표부터 달성하기",
-                    tip2: "💪 할 수 있다는 믿음 갖기"
-                }
+                study: { tag: "월요일 공부 전략", main: "새로운 한 주의 시작,<br>오늘의 계획을 세워보세요", tip1: "📋 이번 주 목표 설정하기", tip2: "📖 취약 과목 집중 공략" },
+                health: { tag: "월요일 컨디션 관리", main: "주말 리듬을 빠르게<br>공부 모드로 전환하세요", tip1: "☀️ 아침 일찍 일어나기", tip2: "💧 물 자주 마시기" },
+                cheer: { tag: "월요일 응원", main: "시작이 반입니다<br>오늘 하루만 집중해보세요", tip1: "🎯 작은 목표부터 달성하기", tip2: "💪 할 수 있다는 믿음 갖기" }
             },
-            // 화요일
             2: {
-                study: {
-                    tag: "화요일 공부 전략",
-                    main: "어제의 공부를 복습하고<br>새로운 개념을 익히세요",
-                    tip1: "🔄 어제 배운 내용 복습",
-                    tip2: "📝 모르는 문제 체크하기"
-                },
-                health: {
-                    tag: "화요일 컨디션 관리",
-                    main: "꾸준한 생활 패턴이<br>집중력을 높여줍니다",
-                    tip1: "🍎 건강한 간식 챙기기",
-                    tip2: "👁️ 눈 스트레칭 자주하기"
-                },
-                cheer: {
-                    tag: "화요일 응원",
-                    main: "어제보다 오늘,<br>조금씩 성장하고 있어요",
-                    tip1: "📈 매일 조금씩 발전 중",
-                    tip2: "🌱 꾸준함이 실력이 됩니다"
-                }
+                study: { tag: "화요일 공부 전략", main: "어제의 공부를 복습하고<br>새로운 개념을 익히세요", tip1: "🔄 어제 배운 내용 복습", tip2: "📝 모르는 문제 체크하기" },
+                health: { tag: "화요일 컨디션 관리", main: "꾸준한 생활 패턴이<br>집중력을 높여줍니다", tip1: "🍎 건강한 간식 챙기기", tip2: "👁️ 눈 스트레칭 자주하기" },
+                cheer: { tag: "화요일 응원", main: "어제보다 오늘,<br>조금씩 성장하고 있어요", tip1: "📈 매일 조금씩 발전 중", tip2: "🌱 꾸준함이 실력이 됩니다" }
             },
-            // 수요일
             3: {
-                study: {
-                    tag: "수요일 공부 전략",
-                    main: "한 주의 중간,<br>페이스 점검이 필요해요",
-                    tip1: "✅ 이번 주 진도 체크",
-                    tip2: "⚖️ 과목별 균형 맞추기"
-                },
-                health: {
-                    tag: "수요일 컨디션 관리",
-                    main: "지치기 쉬운 시기,<br>휴식도 공부의 일부예요",
-                    tip1: "🧘 5분 명상으로 집중력 회복",
-                    tip2: "🚶 점심 후 가벼운 산책"
-                },
-                cheer: {
-                    tag: "수요일 응원",
-                    main: "반이 지났어요<br>남은 반도 화이팅!",
-                    tip1: "🏃 절반 왔으면 끝까지",
-                    tip2: "⭐ 지금까지 잘해왔어요"
-                }
+                study: { tag: "수요일 공부 전략", main: "한 주의 중간,<br>페이스 점검이 필요해요", tip1: "✅ 이번 주 진도 체크", tip2: "⚖️ 과목별 균형 맞추기" },
+                health: { tag: "수요일 컨디션 관리", main: "지치기 쉬운 시기,<br>휴식도 공부의 일부예요", tip1: "🧘 5분 명상으로 집중력 회복", tip2: "🚶 점심 후 가벼운 산책" },
+                cheer: { tag: "수요일 응원", main: "반이 지났어요<br>남은 반도 화이팅!", tip1: "🏃 절반 왔으면 끝까지", tip2: "⭐ 지금까지 잘해왔어요" }
             },
-            // 목요일
             4: {
-                study: {
-                    tag: "목요일 공부 전략",
-                    main: "실전처럼 연습하면<br>실전에서 연습처럼",
-                    tip1: "⏱️ 시간 재고 문제 풀기",
-                    tip2: "📊 오답률 분석하기"
-                },
-                health: {
-                    tag: "목요일 컨디션 관리",
-                    main: "충분한 잠이<br>최고의 집중력을 만들어요",
-                    tip1: "😴 11시 전 취침 목표",
-                    tip2: "📵 잠들기 전 스마트폰 멀리"
-                },
-                cheer: {
-                    tag: "목요일 응원",
-                    main: "포기하고 싶을 때가<br>진짜 실력이 느는 때예요",
-                    tip1: "🔥 힘들면 더 성장 중",
-                    tip2: "💎 버티면 빛나게 됩니다"
-                }
+                study: { tag: "목요일 공부 전략", main: "실전처럼 연습하면<br>실전에서 연습처럼", tip1: "⏱️ 시간 재고 문제 풀기", tip2: "📊 오답률 분석하기" },
+                health: { tag: "목요일 컨디션 관리", main: "충분한 잠이<br>최고의 집중력을 만들어요", tip1: "😴 11시 전 취침 목표", tip2: "📵 잠들기 전 스마트폰 멀리" },
+                cheer: { tag: "목요일 응원", main: "포기하고 싶을 때가<br>진짜 실력이 느는 때예요", tip1: "🔥 힘들면 더 성장 중", tip2: "💎 버티면 빛나게 됩니다" }
             },
-            // 금요일
             5: {
-                study: {
-                    tag: "금요일 공부 전략",
-                    main: "이번 주 배운 내용<br>총정리하는 날입니다",
-                    tip1: "📚 주간 복습 꼭 하기",
-                    tip2: "❓ 궁금한 것 해결하기"
-                },
-                health: {
-                    tag: "금요일 컨디션 관리",
-                    main: "한 주 마무리,<br>스스로에게 작은 선물을",
-                    tip1: "🎵 좋아하는 음악 듣기",
-                    tip2: "🍰 맛있는 간식 먹기"
-                },
-                cheer: {
-                    tag: "금요일 응원",
-                    main: "이번 주도 해냈어요<br>정말 대단합니다!",
-                    tip1: "👏 스스로를 칭찬해주세요",
-                    tip2: "🏆 한 주 완주 축하해요"
-                }
+                study: { tag: "금요일 공부 전략", main: "이번 주 배운 내용<br>총정리하는 날입니다", tip1: "📚 주간 복습 꼭 하기", tip2: "❓ 궁금한 것 해결하기" },
+                health: { tag: "금요일 컨디션 관리", main: "한 주 마무리,<br>스스로에게 작은 선물을", tip1: "🎵 좋아하는 음악 듣기", tip2: "🍰 맛있는 간식 먹기" },
+                cheer: { tag: "금요일 응원", main: "이번 주도 해냈어요<br>정말 대단합니다!", tip1: "👏 스스로를 칭찬해주세요", tip2: "🏆 한 주 완주 축하해요" }
             },
-            // 토요일
             6: {
-                study: {
-                    tag: "토요일 공부 전략",
-                    main: "평일에 못한 부분<br>보충할 좋은 기회예요",
-                    tip1: "🎯 취약 단원 집중 공략",
-                    tip2: "📝 밀린 오답노트 정리"
-                },
-                health: {
-                    tag: "토요일 컨디션 관리",
-                    main: "주말도 규칙적으로<br>생활 리듬을 유지하세요",
-                    tip1: "🌅 평일과 비슷하게 기상",
-                    tip2: "🏃 30분 이상 운동하기"
-                },
-                cheer: {
-                    tag: "토요일 응원",
-                    main: "주말에도 공부하는 당신,<br>이미 남다른 사람이에요",
-                    tip1: "🌟 노력은 배신하지 않아요",
-                    tip2: "🚀 합격에 한 걸음 더 가까이"
-                }
+                study: { tag: "토요일 공부 전략", main: "평일에 못한 부분<br>보충할 좋은 기회예요", tip1: "🎯 취약 단원 집중 공략", tip2: "📝 밀린 오답노트 정리" },
+                health: { tag: "토요일 컨디션 관리", main: "주말도 규칙적으로<br>생활 리듬을 유지하세요", tip1: "🌅 평일과 비슷하게 기상", tip2: "🏃 30분 이상 운동하기" },
+                cheer: { tag: "토요일 응원", main: "주말에도 공부하는 당신,<br>이미 남다른 사람이에요", tip1: "🌟 노력은 배신하지 않아요", tip2: "🚀 합격에 한 걸음 더 가까이" }
             },
-            // 일요일
             0: {
-                study: {
-                    tag: "일요일 공부 전략",
-                    main: "다음 주를 위한<br>전략을 세워보세요",
-                    tip1: "📅 다음 주 계획 수립",
-                    tip2: "🔍 이번 주 부족한 점 파악"
-                },
-                health: {
-                    tag: "일요일 컨디션 관리",
-                    main: "내일을 위해<br>오늘은 충분히 쉬세요",
-                    tip1: "🛋️ 적당한 휴식 취하기",
-                    tip2: "🌙 일찍 잠자리에 들기"
-                },
-                cheer: {
-                    tag: "일요일 응원",
-                    main: "쉼 없이 달려온 당신,<br>정말 자랑스러워요",
-                    tip1: "💝 오늘의 나에게 감사하기",
-                    tip2: "🌈 내일은 더 좋은 날이 될 거예요"
-                }
+                study: { tag: "일요일 공부 전략", main: "다음 주를 위한<br>전략을 세워보세요", tip1: "📅 다음 주 계획 수립", tip2: "🔍 이번 주 부족한 점 파악" },
+                health: { tag: "일요일 컨디션 관리", main: "내일을 위해<br>오늘은 충분히 쉬세요", tip1: "🛋️ 적당한 휴식 취하기", tip2: "🌙 일찍 잠자리에 들기" },
+                cheer: { tag: "일요일 응원", main: "쉼 없이 달려온 당신,<br>정말 자랑스러워요", tip1: "💝 오늘의 나에게 감사하기", tip2: "🌈 내일은 더 좋은 날이 될 거예요" }
             }
         };
 
-        // 유틸리티 함수들
         function timeToMinutes(timeStr) {
             const [hours, minutes] = timeStr.split(':').map(Number);
             return hours * 60 + minutes;
@@ -549,77 +420,31 @@
             return { name: "자습시간", type: "study" };
         }
 
-        function getTimeUntilNext() {
-            const now = new Date();
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-            for (let i = 0; i < schedule.length; i++) {
-                const period = schedule[i];
-                const startMinutes = timeToMinutes(period.start);
-                let endMinutes = startMinutes + period.duration;
-
-                if (endMinutes >= 24 * 60) {
-                    endMinutes = endMinutes - 24 * 60;
-                    if (currentMinutes >= startMinutes || currentMinutes < endMinutes) {
-                        const nextPeriod = schedule[(i + 1) % schedule.length];
-                        let remainingMinutes;
-                        if (currentMinutes >= startMinutes) {
-                            remainingMinutes = (24 * 60) - currentMinutes + endMinutes;
-                        } else {
-                            remainingMinutes = endMinutes - currentMinutes;
-                        }
-                        return `${nextPeriod.name}까지 ${remainingMinutes}분 남음`;
-                    }
-                } else {
-                    if (currentMinutes >= startMinutes && currentMinutes < endMinutes) {
-                        const remainingMinutes = endMinutes - currentMinutes;
-                        const nextPeriod = schedule[(i + 1) % schedule.length];
-                        return `${nextPeriod.name}까지 ${remainingMinutes}분 남음`;
-                    }
-                }
-            }
-
-            const nextPeriod = schedule.find(p => timeToMinutes(p.start) > currentMinutes) || schedule[0];
-            const nextStart = timeToMinutes(nextPeriod.start);
-            const timeUntil = nextStart > currentMinutes ? nextStart - currentMinutes : (24 * 60) - currentMinutes + nextStart;
-
-            return `${nextPeriod.name}까지 ${timeUntil}분 남음`;
-        }
-
-        // D-Day 계산 함수
         function calculateDDay() {
             const today = new Date();
             const suneungDate = new Date('2026-11-19');
-
             today.setHours(0, 0, 0, 0);
             suneungDate.setHours(0, 0, 0, 0);
-
             const timeDiff = suneungDate.getTime() - today.getTime();
-            const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-            return daysDiff;
+            return Math.ceil(timeDiff / (1000 * 3600 * 24));
         }
 
-        // 요일별 메시지 업데이트 함수
         function updateWeeklyMessages() {
             const today = new Date();
             const dayOfWeek = today.getDay();
             const messages = weeklyMessages[dayOfWeek];
 
             if (messages) {
-                // 슬라이드 3: 공부 전략
                 document.getElementById('study-tag').textContent = messages.study.tag;
                 document.getElementById('study-main').innerHTML = messages.study.main;
                 document.getElementById('study-tip1').textContent = messages.study.tip1;
                 document.getElementById('study-tip2').textContent = messages.study.tip2;
 
-                // 슬라이드 4: 건강 관리
                 document.getElementById('health-tag').textContent = messages.health.tag;
                 document.getElementById('health-main').innerHTML = messages.health.main;
                 document.getElementById('health-tip1').textContent = messages.health.tip1;
                 document.getElementById('health-tip2').textContent = messages.health.tip2;
 
-                // 슬라이드 5: 응원 메시지
                 document.getElementById('cheer-tag').textContent = messages.cheer.tag;
                 document.getElementById('cheer-main').innerHTML = messages.cheer.main;
                 document.getElementById('cheer-tip1').textContent = messages.cheer.tip1;
@@ -627,7 +452,6 @@
             }
         }
 
-        // 슬라이드 관련 함수들
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
             if (slides[index]) {
@@ -635,15 +459,15 @@
             }
         }
 
+        // [수정] 슬라이드는 점심/저녁시간(meal)에만 넘어가도록 변경
         function nextSlide() {
             const currentPeriod = getCurrentPeriod();
-            if (currentPeriod.type === "break" || currentPeriod.type === "meal") {
+            if (currentPeriod.type === "meal") {
                 slideIndex = (slideIndex + 1) % totalSlides;
                 showSlide(slideIndex);
             }
         }
 
-        // 메인 업데이트 함수
         function updateAll() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('ko-KR', {
@@ -655,7 +479,6 @@
 
             const currentPeriod = getCurrentPeriod();
 
-            // 시계 업데이트
             const bigClock = document.getElementById('big-clock');
             const currentTimeElement = document.getElementById('current-time');
             const periodText = document.getElementById('period-text');
@@ -666,11 +489,12 @@
             if (periodText) periodText.textContent = currentPeriod.name;
             if (currentPeriodElement) currentPeriodElement.textContent = currentPeriod.name;
 
-            // 화면 모드 전환
             const studyBackground = document.getElementById('study-background');
             const slideContainer = document.getElementById('slide-container');
 
-            if (currentPeriod.type === "class" || currentPeriod.type === "study") {
+            // [수정] 공부시간(class/study) + 쉬는시간(break) → 시계 화면
+            //        점심시간/저녁시간(meal) → 슬라이드 화면
+            if (currentPeriod.type === "class" || currentPeriod.type === "study" || currentPeriod.type === "break") {
                 if (studyBackground) studyBackground.style.display = 'block';
                 if (slideContainer) slideContainer.style.display = 'none';
             } else {
@@ -679,11 +503,9 @@
             }
         }
 
-        // 카운트다운 업데이트
         function updateCountdown() {
             const days = calculateDDay();
             const countdownElement = document.getElementById('countdown');
-
             if (countdownElement) {
                 if (days > 0) {
                     countdownElement.textContent = `D-${days}`;
@@ -693,15 +515,12 @@
             }
         }
 
-        // 자정 업데이트 스케줄링
         function scheduleNextUpdate() {
             const now = new Date();
             const tomorrow = new Date(now);
             tomorrow.setDate(tomorrow.getDate() + 1);
             tomorrow.setHours(0, 0, 1, 0);
-
             const msUntilMidnight = tomorrow.getTime() - now.getTime();
-
             setTimeout(() => {
                 updateCountdown();
                 updateWeeklyMessages();
@@ -709,16 +528,13 @@
             }, msUntilMidnight);
         }
 
-        // 초기화
         function initialize() {
             updateAll();
             updateCountdown();
             updateWeeklyMessages();
-
             setInterval(updateAll, 1000);
             setInterval(nextSlide, 10000);
             setInterval(updateCountdown, 60000);
-
             scheduleNextUpdate();
         }
 
@@ -736,10 +552,6 @@
             }
         });
     </script>
-    <!-- =====================================================
-  깃허브 원본 파일의 </body> 바로 앞에 이 코드 전체를 붙여넣기
-  원본 코드는 수정하지 않아도 됩니다
-===================================================== -->
 
 <style>
 #bcOverlay{display:none;position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#ffffff 0%,#f0f4ff 50%,#e8f0ff 100%);}
@@ -816,7 +628,7 @@
   var HOLIDAYS=['2026-03-21','2026-04-18','2026-05-23','2026-05-25',
     '2026-06-04','2026-07-18','2026-07-24','2026-08-17','2026-08-22',
     '2026-09-02','2026-09-19','2026-09-28','2026-10-09','2026-10-17','2026-11-02'];
-  var DURATION=27000; // 음원 총 길이(ms) — 필요시 조정
+  var DURATION=27000;
   function p2(n){return String(n).padStart(2,'0');}
   function todayKey(){var d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());}
   function isHoliday(){return HOLIDAYS.indexOf(todayKey())>=0;}
@@ -866,17 +678,11 @@
     if(hhmm==='00:00')lastTrig='';
   },1000);
 
-  // T키: 테스트 방송 / ESC: 방송 정지
   document.addEventListener('keydown',function(e){
     if(e.key==='t'||e.key==='T')startBC();
     if(e.key==='Escape')endBC();
   });
 })();
 </script>
-
-<!-- =====================================================
-  여기까지 붙여넣기 완료
-  반드시 이 코드 다음에 </body></html> 이 와야 합니다
-===================================================== -->
 </body>
 </html>
