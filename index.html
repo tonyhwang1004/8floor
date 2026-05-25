@@ -459,13 +459,9 @@
             }
         }
 
-        // [수정] 슬라이드는 점심/저녁시간(meal)에만 넘어가도록 변경
+        // [수정] 슬라이드 화면을 더 이상 사용하지 않으므로 순환 비활성화
         function nextSlide() {
-            const currentPeriod = getCurrentPeriod();
-            if (currentPeriod.type === "meal") {
-                slideIndex = (slideIndex + 1) % totalSlides;
-                showSlide(slideIndex);
-            }
+            return;
         }
 
         function updateAll() {
@@ -492,9 +488,8 @@
             const studyBackground = document.getElementById('study-background');
             const slideContainer = document.getElementById('slide-container');
 
-            // [수정] 공부시간(class/study) + 쉬는시간(break) → 시계 화면
-            //        점심시간/저녁시간(meal) → 슬라이드 화면
-            if (currentPeriod.type === "class" || currentPeriod.type === "study" || currentPeriod.type === "break") {
+            // [수정] 모든 시간대(공부/쉬는/점심/저녁) → 멘트 없이 시계 화면만 표시
+            if (currentPeriod.type === "class" || currentPeriod.type === "study" || currentPeriod.type === "break" || currentPeriod.type === "meal") {
                 if (studyBackground) studyBackground.style.display = 'block';
                 if (slideContainer) slideContainer.style.display = 'none';
             } else {
