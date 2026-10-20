@@ -2,6 +2,42 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <script>
+    /* 서버 시간 보정 (2026-10-20)
+       화면 시계는 TV(기기) 시계를 읽기 때문에 TV 시계가 틀리면 화면도 틀립니다.
+       GitHub 서버 응답의 Date 헤더로 차이를 구해서 페이지 안의 모든 new Date()·Date.now()에 더합니다.
+       10분마다 다시 맞추고, 서버에 못 닿으면 기기 시간을 그대로 씁니다. */
+    (function () {
+      var RealDate = Date, offset = 0;
+      function sync() {
+        if (!window.fetch) return;
+        var t0 = RealDate.now();
+        fetch(location.href.split('#')[0].split('?')[0] + '?clock=' + t0, { method: 'HEAD', cache: 'no-store' })
+          .then(function (r) {
+            var h = r.headers.get('Date'); if (!h) return;
+            var t1 = RealDate.now();
+            // Date 헤더는 초 단위라 0.5초를 더해 가운데 값으로 봅니다.
+            var server = new RealDate(h).getTime() + 500;
+            if (isNaN(server) || t1 - t0 > 5000) return;
+            offset = server - (t0 + t1) / 2;
+          })['catch'](function () {});
+      }
+      function FixedDate() {
+        var a = arguments;
+        if (!(this instanceof FixedDate)) return new RealDate(RealDate.now() + offset).toString();
+        if (a.length === 0) return new RealDate(RealDate.now() + offset);
+        return new (Function.prototype.bind.apply(RealDate, [null].concat([].slice.call(a))))();
+      }
+      FixedDate.prototype = RealDate.prototype;
+      FixedDate.now = function () { return RealDate.now() + offset; };
+      FixedDate.parse = RealDate.parse;
+      FixedDate.UTC = RealDate.UTC;
+      window.Date = FixedDate;
+      window.clockOffsetMs = function () { return Math.round(offset); };
+      sync();
+      setInterval(sync, 10 * 60 * 1000);
+    })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>수능 카운트다운</title>
     <style>
